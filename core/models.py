@@ -56,3 +56,12 @@ class Agenda (models.Model):
     def __str__(self):
         return f"{self.titulo} - {self.horario.strftime('%Hh%M')} - {self.local}"
 
+class GaleriaPresidentes (models.Model):
+    foto_presidente = models.ImageField(upload_to='galeria_presidentes')
+    nome_presidente = models.CharField(max_length=200)
+    ordem_presidencia = models.CharField(max_length=100)
+    periodo_presidencia = models.CharField(max_length=100)
+   
+    
+    def __str__(self):
+        return f"{self.nome_presidente} - {self.periodo_presidencia}"

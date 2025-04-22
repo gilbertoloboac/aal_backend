@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Hero, Noticia, Diretoria, Artigo, Agenda
-from .serializers import HeroSerializer, NoticiaSerializer, DiretoriaSerializer, ArtigoSerializer, AgendaSerializer
+from .models import Hero, Noticia, Diretoria, Artigo, Agenda, GaleriaPresidentes
+from .serializers import HeroSerializer, NoticiaSerializer, DiretoriaSerializer, ArtigoSerializer, AgendaSerializer, GaleriaPresidentesSerializer
 
 class HeroViewSet(viewsets.ModelViewSet):
     queryset = Hero.objects.all()
@@ -23,3 +23,6 @@ class AgendaViewSet(viewsets.ModelViewSet):
     queryset = Agenda.objects.all()
     serializer_class = AgendaSerializer
 
+class GaleriaPresidentesViewSet(viewsets.ModelViewSet):
+    queryset = GaleriaPresidentes.objects.all()
+    serializer_class = GaleriaPresidentesSerializer
