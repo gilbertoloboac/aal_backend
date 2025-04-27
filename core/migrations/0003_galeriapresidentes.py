@@ -6,18 +6,26 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0002_rename_imagen_hero_imagem'),
+        ("core", "0002_rename_imagen_hero_imagem"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='GaleriaPresidentes',
+            name="GaleriaPresidentes",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('foto_presidente', models.ImageField(upload_to='galeria_presidentes')),
-                ('nome_presidente', models.CharField(max_length=200)),
-                ('ordem_presidencia', models.CharField(max_length=100)),
-                ('periodo_presidencia', models.CharField(max_length=100)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("foto_presidente", models.ImageField(upload_to="galeria_presidentes")),
+                ("nome_presidente", models.CharField(max_length=200)),
+                ("ordem_presidencia", models.CharField(max_length=100)),
+                ("periodo_presidencia", models.CharField(max_length=100)),
             ],
         ),
     ]

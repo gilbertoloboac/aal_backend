@@ -6,18 +6,26 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0005_documento'),
+        ("core", "0005_documento"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Revista',
+            name="Revista",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('titulo', models.CharField(max_length=255)),
-                ('descricao', models.TextField()),
-                ('arquivo_pdf', models.FileField(upload_to='revistas/')),
-                ('criado_em', models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("titulo", models.CharField(max_length=255)),
+                ("descricao", models.TextField()),
+                ("arquivo_pdf", models.FileField(upload_to="revistas/")),
+                ("criado_em", models.DateTimeField(auto_now_add=True)),
             ],
         ),
     ]
