@@ -65,3 +65,30 @@ class GaleriaPresidentes (models.Model):
     
     def __str__(self):
         return f"{self.nome_presidente} - {self.periodo_presidencia}"
+    
+class Membro (models.Model):
+    nome_membro = models.CharField(max_length=200)
+    fotografia = models.ImageField(upload_to='membros')
+    biografia = models.TextField()
+    
+    def __str__(self):
+        return self.nome_membro
+    
+class Documento(models.Model):
+    titulo = models.CharField(max_length=255)
+    arquivo = models.FileField(upload_to='documentos/')
+    criado_em = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.titulo
+    
+
+
+class Revista(models.Model):
+    titulo = models.CharField(max_length=255)
+    descricao = models.TextField()
+    arquivo_pdf = models.FileField(upload_to='revistas/')
+    criado_em = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.titulo

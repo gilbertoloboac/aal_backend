@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Hero, Noticia, Diretoria, Artigo, Agenda, GaleriaPresidentes
+from .models import Hero, Noticia, Diretoria, Artigo, Agenda, GaleriaPresidentes, Membro, Documento, Revista
 from django.utils.html import linebreaks
 
 class HeroSerializer(serializers.ModelSerializer):
@@ -67,3 +67,21 @@ class GaleriaPresidentesSerializer(serializers.ModelSerializer):
     class Meta:
         model = GaleriaPresidentes
         fields = ['id', 'foto_presidente', 'nome_presidente', 'ordem_presidencia', 'periodo_presidencia']
+        
+        
+class MembroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Membro
+        fields = ['id', 'nome_membro', 'fotografia', 'biografia']
+        
+
+class DocumentoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Documento
+        fields = ['id', 'titulo', 'arquivo', 'criado_em']
+        
+
+class RevistaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Revista
+        fields = ['id', 'titulo', 'descricao', 'arquivo_pdf', 'criado_em']

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Hero, Noticia, Diretoria, Artigo, Agenda, GaleriaPresidentes
+from .models import Hero, Noticia, Diretoria, Artigo, Agenda, GaleriaPresidentes, Membro, Documento, Revista
 
 @admin.register(Hero)
 class HeroAdmin(admin.ModelAdmin):
@@ -44,4 +44,23 @@ class GaleriaPresidentesAdmin(admin.ModelAdmin):
     list_display = ('nome_presidente', 'periodo_presidencia')
     search_fields = ('nome_presidente', 'periodo_presidencia')
     list_filter = ['nome_presidente', 'periodo_presidencia']
+    list_per_page = 10
+    
+@admin.register(Membro)
+class MembroAdmin(admin.ModelAdmin):
+    list_display = ('id','nome_membro')
+    search_fields = ('id', 'nome_membro')
+    list_filter = ['nome_membro']
+    list_per_page = 10
+    
+    
+@admin.register(Documento)
+class DocumentoAdmin(admin.ModelAdmin):
+    list_display = ('titulo', 'criado_em')
+    
+@admin.register(Revista)
+class RevistaAdmin(admin.ModelAdmin):
+    list_display = ('titulo', 'descricao', 'criado_em')
+    search_fields = ('titulo', 'descricao')
+    list_filter = ['titulo', 'descricao']
     list_per_page = 10
