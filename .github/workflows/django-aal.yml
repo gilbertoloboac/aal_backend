@@ -14,7 +14,7 @@ jobs:
     
     strategy:
       matrix:
-        python-version: [3.10]  # Versão de Python 3.10
+        python-version: [3.10]  # Força a versão 3.10
 
     steps:
     - name: Checkout repository
@@ -23,7 +23,7 @@ jobs:
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: 3.10  # Aqui também estamos forçando a versão 3.10
 
     - name: Clear pip cache
       run: |
