@@ -17,10 +17,12 @@ SECRET_KEY = config(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["65.21.156.144", "localhost"]
+ALLOWED_HOSTS = ["65.21.156.144", "localhost"] 
+
 
 # Application definition
 INSTALLED_APPS = [
+    "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -113,11 +115,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]  # <-- Adicione esta linha
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+JAZZMIN_SETTINGS = {
+    
+    "site_title": "AAL",
+    "site_header": "AAL",
+    "site_brand": "AAL",
+    "site_logo": "imagens/web-app-manifest-192x192.png",
+    "login_logo": "imagens/logo-aal-dourada.png",
+    "login_logo_dark": None,
+}
