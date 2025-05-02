@@ -12,6 +12,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Criar usuário sem privilégios
 RUN adduser --disabled-password --gecos '' appuser
 
+RUN pip install whitenoise
+RUN python manage.py collectstatic --noinput
+
+
 WORKDIR /app
 
 COPY requirements.txt /app/
