@@ -35,11 +35,11 @@ ENV PYTHONUNBUFFERED 1
 # Executar o collectstatic após copiar os arquivos
 RUN python manage.py collectstatic --noinput
 
-# Expor a porta 8000
-EXPOSE 8000
+# Expor a porta 8080
+EXPOSE 8080
 
 # Verificar a saúde do contêiner
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s CMD curl -f http://localhost:8000/ || exit 1
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s CMD curl -f http://localhost:8080/ || exit 1
 
-# Definir o comando para rodar o Gunicorn
-CMD exec gunicorn aal_api.wsgi:application --bind 0.0.0.0:8000
+# Definir o comando para rodar o Gunicorn na porta 8080
+CMD exec gunicorn aal_api.wsgi:application --bind 0.0.0.0:8080
