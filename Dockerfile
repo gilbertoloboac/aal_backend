@@ -12,7 +12,7 @@ RUN adduser --disabled-password --gecos '' appuser
 
 WORKDIR /app
 
-COPY requirements.txt /app/
+COPY requiriments.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /app/
