@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from rest_framework import viewsets
 from .models import (
     Hero,
@@ -22,6 +23,8 @@ from .serializers import (
     RevistaSerializer,
 )
 
+def health_check(request):
+    return JsonResponse({"status": "ok"})
 
 class HeroViewSet(viewsets.ModelViewSet):
     queryset = Hero.objects.all()
