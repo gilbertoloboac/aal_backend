@@ -4,8 +4,10 @@ FROM python:3.11-slim
 
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential && \
+    build-essential \
+    curl && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
+
 
 # Criar usuário sem privilégios
 RUN adduser --disabled-password --gecos '' appuser
