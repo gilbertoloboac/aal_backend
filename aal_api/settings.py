@@ -16,7 +16,8 @@ SECRET_KEY = config(
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['.sslip.io', 'n08k8wgooksgk48ck8sw0css.65.21.156.144.sslip.io']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.sslip.io', 'n08k8wgooksgk48ck8sw0css.65.21.156.144.sslip.io']
+
 
 
 # Application definition
