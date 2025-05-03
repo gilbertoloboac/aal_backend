@@ -73,6 +73,9 @@ class Membro(models.Model):
     nome_membro = models.CharField(max_length=200)
     fotografia = models.ImageField(upload_to="membros")
     biografia = models.TextField()
+    
+    class Meta:
+        ordering = ['id']
 
     def __str__(self):
         return self.nome_membro
