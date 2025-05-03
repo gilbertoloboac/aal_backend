@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         build-essential \
         curl \
-        libmagic1 && \  # Para análise de tipos de arquivo
+        libmagic1 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -16,43 +16,42 @@ RUN adduser --disabled-password --gecos '' appuser
 # Definir o diretório de trabalho
 WORKDIR /app
 
-# Copiar o arquivo requirements.txt para dentro do contêiner
-COPY requirements.txt /app/
+# Copiar requirements primeiro para aproveitar cache de camadas
+COPY requirements.txt .
 
-# Instalar as dependências do projeto
+# Instalar dependências
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar os arquivos restantes do projeto para dentro do contêiner
-COPY . /app/
+# Copiar o restante da aplicação
+COPY . .
 
-# Garantir que os arquivos têm as permissões corretas
+# Configurar permissões
 RUN mkdir -p /app/media /app/staticfiles && \
     chown -R appuser:appuser /app && \
     chmod -R 755 /app/media /app/staticfiles
 
-# Mudar para o usuário sem privilégios
+# Mudar para usuário não privilegiado
 USER appuser
 
-# Definir variáveis de ambiente
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-ENV DJANGO_SETTINGS_MODULE aal_api.settings
+# Variáveis de ambiente
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    DJANGO_SETTINGS_MODULE=aal_api.settings
 
-# Executar o collectstatic após copiar os arquivos
+# Coletar arquivos estáticos
 RUN python manage.py collectstatic --noinput
 
-# Expor a porta 8080
+# Porta de exposição
 EXPOSE 8080
 
-# Verificar a saúde do contêiner
+# Healthcheck
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s \
     CMD curl -f http://localhost:8080/health/ || exit 1
 
-# Definir o comando para rodar o Gunicorn
-CMD exec gunicorn aal_api.wsgi:application \
-    --bind 0.0.0.0:8080 \
-    --workers 3 \
-    --timeout 120 \
-    --worker-class sync \
-    --log-level info \
-    --access-logfile -
+# Comando principal
+CMD ["gunicorn", "aal_api.wsgi:application", \
+    "--bind", "0.0.0.0:8080", \
+    "--workers", "3", \
+    "--timeout", "120", \
+    "--worker-class", "sync", \
+    "--log-level", "info"]
