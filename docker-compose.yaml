@@ -15,8 +15,8 @@ services:
     ports:
       - "8081:80"  # Coolify usará essa porta para expor seu app
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro  # Garante que o arquivo nginx.conf seja montado corretamente
-      - media:/app/media  # Volumes compartilhados entre o web e nginx
+      - ./nginx:/etc/nginx:ro
+      - media:/app/media
     depends_on:
       - web
 
