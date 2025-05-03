@@ -26,7 +26,7 @@ services:
     command: sh -c "gunicorn --bind 0.0.0.0:8000 aal_api.wsgi:application"
     restart: always
     expose:
-      - "8000"
+      - "8081"
     volumes:
       - ./:/app
       - /var/www/static/:/var/www/static/

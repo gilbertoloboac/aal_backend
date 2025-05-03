@@ -1,4 +1,4 @@
-bind = "0.0.0.0:8000"
+bind = "0.0.0.0:8081"
 module = "aal_api.wsgi:application"  # Corrigido para match com seu WSGI
 
 workers = 4  # Número de workers (recomendado geralmente 2-4 x núcleos CPU)
