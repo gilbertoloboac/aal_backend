@@ -13,12 +13,12 @@ services:
     image: nginx:latest
     container_name: nginx_media
     ports:
-      - "8081:80"  # Coolify usará essa porta para expor seu app
+      - "8081:80"
     volumes:
-      - ./nginx:/etc/nginx:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - media:/app/media
     depends_on:
       - web
-
+      
 volumes:
   media:
